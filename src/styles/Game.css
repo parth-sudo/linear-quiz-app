@@ -1,0 +1,29 @@
+.game {
+    width: 100%;
+    min-height: 100vh;
+    background: #111;
+    display: flex;
+  }
+  
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+  
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ready-msg {
+      justify-content: space-between;
+      display: flex; 
+      /* margin-left: 20%;  */
+      align-items: center; 
+  }
+
+.pauseScreen{
+    margin: 0 auto;
+    text-align : center;
+    color: whitesmoke;
+  }

@@ -1,0 +1,48 @@
+.typeRacer {
+    width: "100%";
+    height: 100px;
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: initial;
+    align-items: center;
+    background: #283149;
+  }
+  
+  .wordOutput {
+    width: "100%";
+    height: inherit;
+    background: #111727;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .typeRacer .wordOutput p {
+    font-size: 26px;
+    line-height: 1;
+  }
+  
+  .time {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #f73859;
+    color: #fff;
+    font-size: 80px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+  
+ .button-space{
+
+  margin-top: 30px;
+
+ }

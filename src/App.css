@@ -1,0 +1,21 @@
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Jost", sans-serif;
+}
+
+
+/* App Styles */
+
+.Home {
+  width: 100%;
+  min-height: 100vh;
+  background: #111;
+  display: flex;
+}
+
+/* Typeracer Styles */
+

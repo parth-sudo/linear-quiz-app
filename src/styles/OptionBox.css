@@ -1,0 +1,32 @@
+.option{
+    width: 200px;
+    margin : 10px;
+    margin-bottom : 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: large;
+    background-color: black;
+    color: white;
+}
+
+
+#inner2{
+ 
+  background-color: #283149;
+  width: 100%;
+} 
+
+.option-row{
+    display:flex;
+    justify-content:space-around;
+    margin-top: 5px;
+}
+
+.button {
+  text-align: center;
+  border: 1px solid white;
+  background-color: #283149;
+  border-radius: 10px;
+}
