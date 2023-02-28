@@ -1,14 +1,13 @@
 import React, { useState, useEffect, createContext, useContext } from "react";
 import Container from "./Container";
 import QuestionBox from "./QuestionBox";
-
 import OptionBox from "./OptionBox.js";
-
 import "../styles/Game.css";
-import { Grid, Typography, Button, ButtonGroup } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import Context from "../store/pause-context.js";
 import {Questions, Choices} from "./DummyData.js";
+import InGameMessage from "./InGameMessage";
 
 export default function Game() {
   // get all choices, questions, worth.
@@ -116,64 +115,39 @@ export default function Game() {
   }
 
   const gameLostMessage = () => {
+
     return (
-      <div className="pauseScreen">
-        <h2>
-          {" "}
-          Wrong! The correct answer is{" "}
-          <span style={{ color: "lightgreen" }}>
-            {" "}
-            {alphabet(correctChoice.pos)} {correctChoice.val}{" "}
-          </span>{" "}
-        </h2>
-        <h2 style = {{color: "lightblue"}}> Trivia </h2>
-        <p> {questions[(worthID > 0) ? worthID - 1 : 0].trivia}  </p>
-        <Button color="secondary" to="/" component={Link}>
-          {" "}
-          Back to Home{" "}
-        </Button>
-      </div>
+      <InGameMessage 
+      resultMessage = "Wrong! The correct answer is."
+      correctChoicePosition = {alphabet(correctChoice.pos)}
+      correctChoiceValue = {correctChoice.val}
+      answerInfo = {questions[(worthID > 0) ? worthID - 1 : 0].trivia}
+      />
     );
   };
 
   const gameWonMessage = () => {
+
     return (
-      <div className="pauseScreen">
-        <h1>
-       
-          <span style={{}}>Congratulations!!</span> All answers are correct.
-        
-        </h1>
-        <h2 style = {{color: "lightblue"}}>Trivia </h2>
-        <p>   <span style={{ color: "lightgreen" }}>  {question.trivia} </span>  </p>
-        <Button color="secondary" to="/" component={Link}>
-          
-          Back to Home
-        </Button>
-      </div>
+          <InGameMessage 
+          resultMessage = "Congratulations!! All answers are correct."
+          correctChoicePosition = {alphabet(correctChoice.pos)}
+          correctChoiceValue = {correctChoice.val}
+          answerInfo = {questions[questions.length - 1].trivia}
+          />
     );
   };
 
   const gameQuitMessage = () => {
+
     console.log(correctChoice);
     return (
-      <div className="pauseScreen">
-        <h2>
-          {" "}
-          Thanks for playing. The correct answer is{" "}
-          <span style={{ color: "lightgreen" }}>
-            {" "}
-            {alphabet(correctChoice.pos)} {correctChoice.val}{" "}
-          </span>{" "}
-        </h2>
-        <h2 style = {{color: "lightblue"}}> Trivia </h2>
-        <p> {questions[prevID < worthID && prevID >= 0 ? prevID : 0].trivia} </p>
-
-        <Button color="secondary" to="/" component={Link}>
-          {" "}
-          Back to Home{" "}
-        </Button>
-      </div>
+      <InGameMessage 
+      resultMessage = "Thanks for playing. The correct answer is: "
+      correctChoicePosition = {alphabet(correctChoice.pos)}
+      correctChoiceValue = {correctChoice.val}
+      answerInfo = {questions[(worthID > 0) ? worthID - 1 : 0].trivia}
+      />
     );
   };
 
@@ -188,13 +162,10 @@ export default function Game() {
   const continueGame = () => {
     return (
       <div>
-  
         {prevID < worthID && worthID <= questions.length
           ? putNextQuestion()
           : null}
-
         {resetStates()}
-
         {prevID === worthID && prevID >= 1 ? boxHolder() : null}
       </div>
     );

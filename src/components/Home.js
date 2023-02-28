@@ -15,14 +15,14 @@ export default function Home() {
 const renderHome = () => {
 
     return(
-        <Grid item xs={12} align="center">
-          <Typography variant="h3" compact="h3">
-          <p style={{'color': 'white'}}> Quiz App </p>
-            <Button color="primary" to = "/game" component={Link}> 
-            Click here to play
-          </Button>
-          </Typography>
-      </Grid>
+      <div >
+            <Typography variant="h3" compact="h3">
+            <p style={{'color': 'white'}}> Quiz App </p>
+              <Button color="primary" to = "/game" component={Link}> 
+              Click here to play
+            </Button>
+            </Typography>
+      </div>
     )
 }
 
