@@ -15,7 +15,7 @@ export default function Game() {
   const [choices, setChoices] = useState(Choices);
   const [questions, setQuestions] = useState(Questions);
 
-  const [worthID, setWorthID] = useState(0);
+  const [gameIndex, setgameIndex] = useState(0);
   const [prevID, setPrevID] = useState(1);
   const [gameLost, setGameLost] = useState(false);
   const [freezed, setFreezed] = useState(false);
@@ -33,17 +33,17 @@ export default function Game() {
   const [gameQuit, setGameQuit] = useState(false);
 
   useEffect(() => {
-    console.log(worthID);
+    console.log(gameIndex);
 
-    if (worthID > 0 && worthID <= questions.length) {
+    if (gameIndex > 0 && gameIndex <= questions.length) {
       const question_items = questions.filter((question) => {
-        return question.index === worthID - 1;
+        return question.index === gameIndex - 1;
       });
 
       const question = question_items[0];
 
       const choice_items = choices.filter(
-        (choice) => choice.question === worthID - 1
+        (choice) => choice.question === gameIndex - 1
       );
 
       choices.forEach((choice) => {
@@ -68,7 +68,7 @@ export default function Game() {
       // console.log(n);
       setTL(y);
     }
-  }, [worthID, questions, choices]);
+  }, [gameIndex, questions, choices]);
 
   // prop function.
   function timeUpCheck(s) {
@@ -82,8 +82,8 @@ export default function Game() {
       setGameQuit(true);
     } else if (isCorrect) {
       // console.log(" func get result says absolutely true");
-      setWorthID(worthID + 1);
-      console.log(worthID);
+      setgameIndex(gameIndex + 1);
+      console.log(gameIndex);
     } else {
       setGameLost(true);
     }
@@ -107,7 +107,7 @@ export default function Game() {
         <h3 style={{ color: "white" }} onClick={() => setRightAnswer(true)}>
           Right answer!
           <h2> Trivia </h2>
-         <p>  <span style={{ color: "lightgreen" }}> {questions[(worthID > 0) ? worthID - 1 : 0].trivia} </span> </p>
+         <p>  <span style={{ color: "lightgreen" }}> {questions[(gameIndex > 0) ? gameIndex - 1 : 0].trivia} </span> </p>
           <Button color="secondary"> Next </Button>
         </h3>
       </div>
@@ -121,7 +121,7 @@ export default function Game() {
       resultMessage = "Wrong! The correct answer is."
       correctChoicePosition = {alphabet(correctChoice.pos)}
       correctChoiceValue = {correctChoice.val}
-      answerInfo = {questions[(worthID > 0) ? worthID - 1 : 0].trivia}
+      answerInfo = {questions[(gameIndex > 0) ? gameIndex - 1 : 0].trivia}
       />
     );
   };
@@ -146,7 +146,7 @@ export default function Game() {
       resultMessage = "Thanks for playing. The correct answer is: "
       correctChoicePosition = {alphabet(correctChoice.pos)}
       correctChoiceValue = {correctChoice.val}
-      answerInfo = {questions[(worthID > 0) ? worthID - 1 : 0].trivia}
+      answerInfo = {questions[(gameIndex > 0) ? gameIndex - 1 : 0].trivia}
       />
     );
   };
@@ -154,7 +154,7 @@ export default function Game() {
   const resetStates = () => {
     if (rightAnswer) {
       setRightAnswer(false);
-      setPrevID(worthID);
+      setPrevID(gameIndex);
       setFreezed(false);
     }
   };
@@ -162,11 +162,11 @@ export default function Game() {
   const continueGame = () => {
     return (
       <div>
-        {prevID < worthID && worthID <= questions.length
+        {prevID < gameIndex && gameIndex <= questions.length
           ? putNextQuestion()
           : null}
         {resetStates()}
-        {prevID === worthID && prevID >= 1 ? boxHolder() : null}
+        {prevID === gameIndex && prevID >= 1 ? boxHolder() : null}
       </div>
     );
   }
@@ -180,8 +180,8 @@ export default function Game() {
            
                 <div id="wrapper">
                   <QuestionBox
-                    worthID={worthID}
-                    setWorthID={setWorthID}
+                    gameIndex={gameIndex}
+                    setgameIndex={setgameIndex}
                     question={question}
                     timeUpCheck={timeUpCheck}
                     TL={TL}
@@ -189,8 +189,8 @@ export default function Game() {
 
                   <OptionBox
                     choice_items={choiceItems}
-                    worthID={worthID}
-                    setWorthID={setWorthID}
+                    gameIndex={gameIndex}
+                    setgameIndex={setgameIndex}
                     getResult={getResult}
                     TL={TL}
                   />
@@ -207,17 +207,17 @@ export default function Game() {
     <div className="game">
       {/* ready button */}
       <div className="container">
-        {worthID === 0 ? (
+        {gameIndex === 0 ? (
           <div className="pauseScreen">
             <Button
               style={{ margin: "0 auto" }}
               color="secondary"
-              onClick={() => setWorthID(worthID + 1)}
+              onClick={() => setgameIndex(gameIndex + 1)}
             >
               Click To Begin!!!
             </Button>
           </div>
-        ) : worthID > questions.length ? (
+        ) : gameIndex > questions.length ? (
           gameWonMessage()
         ) : null}
 

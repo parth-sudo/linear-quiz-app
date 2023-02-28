@@ -12,7 +12,7 @@ function QuestionBox(props) {
 
   const { freezed } = useContext(Context);
 
-  const { question, worthID, TL} = props;
+  const { question, gameIndex, TL} = props;
   const [seconds, setSeconds] = useState(45);
   const [timerCalled, setTimerCalled] = useState(false);
   const [tiktok, setTiktok] = useState(new Audio(tiktokTimer));
@@ -30,12 +30,12 @@ function QuestionBox(props) {
 
     const delay = TL + 4000;
 
-    if(worthID < 11) {
+    if(gameIndex < 11) {
       const timer = setTimeout(() => setTimerCalled(true), delay); // change ms here.
       return () => clearTimeout(timer);
     }
 
-  }, [worthID]);
+  }, [gameIndex]);
 
   useEffect(() => {
     if(timerCalled === true) {
@@ -71,7 +71,7 @@ function QuestionBox(props) {
 
     }
    
-  }, [timerCalled, freezed, tiktok, worthID]);
+  }, [timerCalled, freezed, tiktok, gameIndex]);
 
   const callTimer = () => {
 
@@ -94,7 +94,7 @@ function QuestionBox(props) {
         <div className="typeRacer">
           <div className="wordOutput">
            
-           <p> Q {worthID}. {question.title} </p> 
+           <p> Q {gameIndex}. {question.title} </p> 
         
           </div>
 

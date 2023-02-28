@@ -11,7 +11,7 @@ import wrong from "../soundEffects/wrong.mp3";
 function OptionBox(props) {
 
   const { setFreezed } = useContext(Context);
-  const {choice_items, worthID, TL} = props;
+  const {choice_items, gameIndex, TL} = props;
 
   const [disableFreeze, setDisableFreeze] = useState(true);
   const [showCAB, setShowCAB] = useState(false);
@@ -66,8 +66,8 @@ function OptionBox(props) {
        props.getResult(true, false);
       //  setRightAnswer(true);
    
-      console.log(worthID);
-      if(worthID !== 15) {
+      console.log(gameIndex);
+      if(gameIndex !== 15) {
         let song = new Audio(clap);
         song.play();
       }
@@ -104,7 +104,7 @@ function OptionBox(props) {
                                 disableOption = {showCAB}
                                 cabClicked = {cabClicked}
                                 setChosen = {setIsCorrect}
-                                worthID = {worthID}
+                                gameIndex = {gameIndex}
                                 /> 
                             </div>
                           )
